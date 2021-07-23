@@ -30,10 +30,33 @@ def read_dataset(path,colnames=None):
 
     '''
     if check_file(path) == True:
-        df=pd.read_csv(path, header=colnames)
+        if colnames == None:
+            df=pd.read_csv(path, header=colnames)
+        else:
+            df=pd.read_csv(path)           
     else:
         df = None
     return df
+
+
+
+def read_dataset_2 (path,colnames=False): 
+    ''' 
+        the function reads the dataset via a path and retunrs a dataframe 
+    
+    ''' 
+    # if the file exists return the dataset inside, return an error message if not 
+    if is_file_exist(path): 
+        if colnames: 
+            df = pd.read_csv(path) 
+        else: 
+            df = pd.read_csv(path, header=None) 
+
+    else: 
+        df = None 
+
+    return df
+
 
 
 def list_files_cur():
